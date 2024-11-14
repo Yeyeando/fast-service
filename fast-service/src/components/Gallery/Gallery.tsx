@@ -4,15 +4,14 @@ import "./gallery.css";
 
 const ImageGallery: React.FC = () => {
   return (
-    <div className="w-100">
-      {/* Fila de imágenes */}
-      <div className="row g-3">
+    <div className="container-fluid">
+      <div className="row g-5">
         {imagesData.images.map((image) => (
-          <div className="col-md-3" key={image.id}>
-            <div className="card">
-              <img src={image.url} alt={image.alt} className="card-img-top" />
-              <div className="card-body">
-                <h5 className="card-title">{image.id}</h5>
+          <div className="col-sm-3" key={image.id}>
+            <div className="image-container">
+              <img src={image.url} alt={image.alt} className="img-fluid" />
+              <div className="overlay">
+                <span className="image-id">{image.id}</span>
               </div>
             </div>
           </div>

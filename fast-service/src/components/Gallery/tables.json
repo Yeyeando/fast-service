@@ -2,44 +2,44 @@
   "images": [
     {
       "id": 1,
-      "url": "././img/salir.png",
+      "url": "././img/chair.svg",
       "alt": "logout",
-      "title": "Salir 1",
+      "title": "chair 1",
       "description": "Imagen de un icono de salir o logout."
     },
     {
       "id": 2,
-      "url": "././img/salir.png",
+      "url": "././img/chair.svg",
       "alt": "logout",
-      "title": "Salir 2",
+      "title": "chair 2",
       "description": "Imagen de un icono de salir o logout."
     },
     {
       "id": 3,
-      "url": "././img/salir.png",
+      "url": "././img/chair.svg",
       "alt": "logout",
-      "title": "Salir 3",
+      "title": "chair 3",
       "description": "Imagen de un icono de salir o logout."
     },
     {
       "id": 4,
-      "url": "././img/salir.png",
+      "url": "././img/chair.svg",
       "alt": "logout",
-      "title": "Salir 4",
+      "title": "chair 4",
       "description": "Imagen de un icono de salir o logout."
     },
     {
       "id": 5,
-      "url": "././img/salir.png",
+      "url": "././img/chair.svg",
       "alt": "logout",
-      "title": "Salir 5",
+      "title": "chair 5",
       "description": "Imagen de un icono de salir o logout."
     },
     {
       "id": 6,
-      "url": "././img/salir.png",
+      "url": "././img/chair.svg",
       "alt": "logout",
-      "title": "Salir 6",
+      "title": "chair 6",
       "description": "Imagen de un icono de salir o logout."
     }
   ]
