@@ -3,14 +3,20 @@ import "../Header/header.css";
 
 interface HeaderProps {
   title: string;
+  showBackButton?: boolean;
+  showExitButton?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const Header: React.FC<HeaderProps> = ({
+  title,
+  showBackButton = true,
+  showExitButton = true,
+}) => {
   return (
     <header className="header">
-      <img src="././img/volver.png" alt="logout" />
+      {showBackButton && <img src="././img/volver.svg" alt="volver" />}
       <h1>{title}</h1>
-      <img src="././img/salir.png" alt="logout" />
+      {showExitButton && <img src="././img/salir.svg" alt="salir" />}
     </header>
   );
 };

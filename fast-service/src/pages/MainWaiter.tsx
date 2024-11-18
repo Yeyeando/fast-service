@@ -6,7 +6,7 @@ import Footer from "../components/Footer/Footer";
 function MainWaiter() {
   return (
     <>
-      <Header title="Select a table" />
+      <Header title="Select a table" showBackButton={false} />
       <Tables />
       <Footer />
     </>

@@ -4,13 +4,14 @@
 }
 
 h1 {
-  font-style: italic;
+  font-style: inter;
 }
 
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  height: 10dvh;
   display: flex;
   justify-content: space-around;
   align-items: center;
