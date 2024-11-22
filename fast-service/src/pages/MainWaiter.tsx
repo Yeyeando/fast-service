@@ -1,8 +1,8 @@
-import Header from "../components/Header/Header";
-import Tables from "../components/Gallery/Gallery"; // Importar el componente
+import Header from "../components/general/header/Header";
+import Tables from "../components/main-waiter/gallery/Gallery";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../style.css";
-import Footer from "../components/Footer/Footer";
+import Footer from "../components/general/footer/Footer";
 function MainWaiter() {
   return (
     <>

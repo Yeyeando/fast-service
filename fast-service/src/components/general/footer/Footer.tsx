@@ -4,7 +4,7 @@ import "../Footer/footer.css";
 function Footer() {
   return (
     <div className="footer">
-      <img src="././img/salir.png" alt="ring" />
+      <img src="././img/salir.svg" alt="ring" />
     </div>
   );
 }

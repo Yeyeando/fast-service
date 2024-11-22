@@ -1,7 +1,7 @@
 import React from "react";
 import imagesData from "./tables.json";
 import "./gallery.css";
-
+import { Link } from "react-router-dom";
 const ImageGallery: React.FC = () => {
   return (
     <div className="grid-container">
