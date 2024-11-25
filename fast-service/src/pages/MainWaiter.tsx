@@ -7,7 +7,7 @@ function MainWaiter() {
   return (
     <>
       <Header title="Select a table" showBackButton={false} />
-      <Tables />
+      <Tables nextRoute={"/MenuWaiter"} />
       <Footer />
     </>
   );

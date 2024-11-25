@@ -23,7 +23,8 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .responsive-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2);
+    gap: 40px;
   }
 }
 

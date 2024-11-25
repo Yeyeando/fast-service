@@ -17,39 +17,41 @@ const Header: React.FC<HeaderProps> = ({
   backRoute = "/",
   mainRoute = "/",
 }) => {
-  const navigate = useNavigate(); // Hook de React Router para navegar
+  const navigate = useNavigate();
 
   const handleBack = () => {
     if (backRoute) {
-      navigate(backRoute); // Navegar a la ruta indicada
+      navigate(backRoute);
     }
   };
   const handleMainBack = () => {
     if (mainRoute) {
-      navigate(mainRoute); // Navegar a la ruta indicada
+      navigate(mainRoute);
     }
   };
 
   return (
-    <header className="header">
-      {showBackButton && (
-        <img
-          src="././img/volver.svg"
-          alt="volver"
-          onClick={handleBack} // Ejecutar la función handleBack al hacer clic
-          style={{ cursor: "pointer" }} // Asegurar que parezca un botón
-        />
-      )}
-      <h1>{title}</h1>
-      {showExitButton && (
-        <img
-          src="././img/salir.svg"
-          alt="salir"
-          onClick={handleMainBack}
-          style={{ cursor: "pointer" }}
-        />
-      )}
-    </header>
+    <div className="header-container">
+      <div className="header">
+        {showBackButton && (
+          <img
+            src="././img/volver.svg"
+            alt="volver"
+            onClick={handleBack}
+            style={{ cursor: "pointer" }}
+          />
+        )}
+        <h1>{title}</h1>
+        {showExitButton && (
+          <img
+            src="././img/salir.svg"
+            alt="salir"
+            onClick={handleMainBack}
+            style={{ cursor: "pointer" }}
+          />
+        )}
+      </div>
+    </div>
   );
 };
 

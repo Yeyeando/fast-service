@@ -1,7 +1,7 @@
 import Header from "../components/general/header/Header";
 import Footer from "../components/general/footer/Footer";
 import HorizontalCard from "../components/general/horizontalcard/HorizontalCard";
-import Grid from "../components/menu-waiter/menu-grid/Grid";
+import Grid from "../components/general/menu-grid/Grid";
 function MenuWaiter() {
   return (
     <>

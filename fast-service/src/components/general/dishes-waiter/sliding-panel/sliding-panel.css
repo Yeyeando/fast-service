@@ -1,0 +1,17 @@
+.sliding-panel-open {
+  transition: transform 1s;
+  transform: translateX(50vh);
+}
+
+.sliding-panel-close {
+  transition: transform 1s;
+  transform: translateX(-50vh);
+}
+
+.sliding-panel {
+  position: fixed;
+  bottom: -50dvh;
+  width: 50vw;
+  height: 50dvh;
+  overflow: auto;
+}

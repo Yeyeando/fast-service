@@ -6,6 +6,9 @@
 h1 {
   font-style: inter;
 }
+.container-footer {
+  width: 100%;
+}
 
 .footer {
   position: fixed;
@@ -41,6 +44,14 @@ h1 {
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .footer {
+    width: 40%;
+    margin-left: 30%;
+  }
+  .footer img {
+    width: 8%;
+    height: auto;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
