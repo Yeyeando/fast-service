@@ -5,7 +5,6 @@ import "../Header/header.css";
 interface HeaderProps {
   title: string;
   showBackButton?: boolean;
-  showExitButton?: boolean;
   backRoute?: string;
   mainRoute?: string;
 }
@@ -13,7 +12,6 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({
   title,
   showBackButton = true,
-  showExitButton = true,
   backRoute = "/",
   mainRoute = "/",
 }) => {
@@ -42,14 +40,13 @@ const Header: React.FC<HeaderProps> = ({
           />
         )}
         <h1>{title}</h1>
-        {showExitButton && (
-          <img
-            src="././img/salir.svg"
-            alt="salir"
-            onClick={handleMainBack}
-            style={{ cursor: "pointer" }}
-          />
-        )}
+
+        <img
+          src="././img/salir.svg"
+          alt="salir"
+          onClick={handleMainBack}
+          style={{ cursor: "pointer" }}
+        />
       </div>
     </div>
   );

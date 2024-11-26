@@ -3,8 +3,10 @@ import "../Footer/footer.css";
 
 function Footer() {
   return (
-    <div className="footer">
-      <img src="././img/salir.svg" alt="ring" />
+    <div className="footer-container">
+      <div className="footer">
+        <img src="././img/salir.svg" alt="ring" />
+      </div>
     </div>
   );
 }
