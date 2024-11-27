@@ -7,7 +7,7 @@ interface Dish {
 interface DishContextType {
   selectedDishes: Dish[];
   addDish: (dish: Dish) => void;
-  clearDishes: () => void; // Nueva función para limpiar la lista
+  clearDishes: () => void;
 }
 
 const DishContext = createContext<DishContextType | undefined>(undefined);

@@ -1,20 +1,27 @@
+import React, { useState } from "react";
 import Header from "../components/general/header/Header";
 import Footer from "../components/general/footer/Footer";
 import HorizontalCard from "../components/general/horizontalcard/HorizontalCard";
 import Grid from "../components/general/menu-grid/Grid";
-import { useDishContext } from "./DishContext";
-import { useNavigate } from "react-router-dom";
+import IngredientPanel from "../components/general/dishes-waiter/sliding-panel/IngredientPanel";
+import ActionButtons from "../components/general/buttons/ActionButtons";
 
 function DishesWaiter() {
-  const { addDish, clearDishes } = useDishContext(); // Obtenemos la función para agregar tarjetas
-  const navigate = useNavigate();
-  // Lista de platos disponibles
+  const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
+
   const dishes = [
-    { title: "Burguer1", image: "././public/img/burguer1.jpg" },
-    { title: "Burguer2", image: "././public/img/burguer1.jpg" },
-    { title: "Burguer3", image: "././public/img/burguer1.jpg" },
-    { title: "Burguer4", image: "././public/img/burguer1.jpg" },
+    { id: 1, title: "Burguer1", image: "././public/img/burguer1.jpg" },
+    { id: 2, title: "Burguer2", image: "././public/img/burguer1.jpg" },
+    { id: 3, title: "Burguer3", image: "././public/img/burguer1.jpg" },
+    { id: 4, title: "Burguer4", image: "././public/img/burguer1.jpg" },
   ];
+
+  const handleUpdateIngredients = (
+    updatedIngredients: { id: number; name: string; quantity: number }[]
+  ) => {
+    console.log("Ingredientes actualizados:", updatedIngredients);
+    // Puedes guardar los cambios en un estado global o en un servidor
+  };
 
   return (
     <>
@@ -22,35 +29,21 @@ function DishesWaiter() {
       <Grid>
         {dishes.map((dish) => (
           <HorizontalCard
-            key={dish.title}
+            key={dish.id}
             title={dish.title}
             image={dish.image}
-            onClick={() => addDish(dish)} // Agregamos al JSON global al hacer clic
+            id={dish.id}
+            onClick={() => setSelectedCardId(dish.id)}
           />
         ))}
       </Grid>
-      <div className="buttons" style={{ marginBottom: "100px" }}>
-        <button
-          style={{
-            backgroundColor: "red",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          onClick={() => clearDishes()}
-        >
-          Cancel
-        </button>
-        <button
-          style={{
-            backgroundColor: "blue",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          onClick={() => navigate("/Confirmation")}
-        >
-          Add
-        </button>
-      </div>
+      {selectedCardId && (
+        <IngredientPanel
+          selectedCardId={selectedCardId}
+          onUpdateIngredients={handleUpdateIngredients}
+        />
+      )}
+      <ActionButtons cancelRoute="/" confirmRoute="/confirmation" />
       <Footer />
     </>
   );
