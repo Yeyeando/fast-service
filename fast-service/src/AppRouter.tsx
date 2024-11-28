@@ -13,9 +13,9 @@ const AppRouter: React.FC = () => {
       <Router>
         <Routes>
           <Route path="/" element={<MainWaiter />} />
-          <Route path="/MenuWaiter" element={<MenuWaiter />} />
-          <Route path="/DishesWaiter" element={<DishesWaiter />} />
-          <Route path="/Confirmation" element={<Confirmation />} />
+          <Route path="/MenuWaiter/:table?" element={<MenuWaiter />} />
+          <Route path="/DishesWaiter/:table?/:id?" element={<DishesWaiter />} />
+          <Route path="/Confirmation/:table?" element={<Confirmation />} />
           <Route path="*" element={<h2>404 - Página no encontrada</h2>} />
         </Routes>
       </Router>

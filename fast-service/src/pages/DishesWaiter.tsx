@@ -1,48 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../components/general/header/Header";
 import Footer from "../components/general/footer/Footer";
 import HorizontalCard from "../components/general/horizontalcard/HorizontalCard";
 import Grid from "../components/general/menu-grid/Grid";
-import IngredientPanel from "../components/general/dishes-waiter/sliding-panel/IngredientPanel";
-import ActionButtons from "../components/general/buttons/ActionButtons";
+import ActionButtons from "../components/general/buttons/ActionButtons"; // Importa el nuevo componente de botones
+import { useDishContext } from "./DishContext";
+import { useParams } from "react-router-dom";
 
 function DishesWaiter() {
-  const [selectedCardId, setSelectedCardId] = useState<number | null>(null);
+  const { addDish } = useDishContext();
+  const { id } = useParams();
+  const { table } = useParams();
 
   const dishes = [
-    { id: 1, title: "Burguer1", image: "././public/img/burguer1.jpg" },
-    { id: 2, title: "Burguer2", image: "././public/img/burguer1.jpg" },
-    { id: 3, title: "Burguer3", image: "././public/img/burguer1.jpg" },
-    { id: 4, title: "Burguer4", image: "././public/img/burguer1.jpg" },
+    { title: "Burguer1", image: "/img/burguer1.jpg" },
+    { title: "Burguer2", image: "/img/burguer1.jpg" },
+    { title: "Burguer3", image: "/img/burguer1.jpg" },
+    { title: "Burguer4", image: "/img/burguer1.jpg" },
   ];
-
-  const handleUpdateIngredients = (
-    updatedIngredients: { id: number; name: string; quantity: number }[]
-  ) => {
-    console.log("Ingredientes actualizados:", updatedIngredients);
-    // Puedes guardar los cambios en un estado global o en un servidor
-  };
 
   return (
     <>
-      <Header title="Menu" backRoute="/MenuWaiter" />
+      <Header title="Menu" backRoute={`/MenuWaiter/${table}`} />
+      {id}
       <Grid>
         {dishes.map((dish) => (
           <HorizontalCard
-            key={dish.id}
+            key={dish.title}
             title={dish.title}
             image={dish.image}
-            id={dish.id}
-            onClick={() => setSelectedCardId(dish.id)}
+            onClick={() => addDish(dish)}
           />
         ))}
       </Grid>
-      {selectedCardId && (
-        <IngredientPanel
-          selectedCardId={selectedCardId}
-          onUpdateIngredients={handleUpdateIngredients}
-        />
-      )}
       <ActionButtons cancelRoute="/" confirmRoute="/confirmation" />
       <Footer />
     </>

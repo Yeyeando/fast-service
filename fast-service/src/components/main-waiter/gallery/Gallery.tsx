@@ -1,27 +1,31 @@
 import React from "react";
-import imagesData from "./tables.json";
+import imagesData from "../../general/jsons/tables/tables.json";
 import "./gallery.css";
 import { useNavigate } from "react-router-dom";
 
 interface galleryProps {
-  nextRoute?: String;
+  nextRoute?: string;
 }
 const ImageGallery: React.FC<galleryProps> = ({ nextRoute = "/" }) => {
   const navigate = useNavigate();
 
-  const handleNext = () => {
+  const handleNext = (table: number) => () => {
     if (nextRoute) {
-      navigate(nextRoute);
+      navigate(nextRoute + `/${table}`);
     }
   };
   return (
     <div className="grid-container">
-      {imagesData.images.map((image) => (
-        <div className="grid-item" key={image.id} onClick={handleNext}>
+      {imagesData.tables.map((tables) => (
+        <div
+          className="grid-item"
+          key={tables.id}
+          onClick={handleNext(tables.id)}
+        >
           <div className="image-container">
-            <img src={image.url} alt={image.alt} className="img-fluid" />
+            <img src={tables.url} alt={tables.alt} className="img-fluid" />
             <div className="overlay">
-              <span className="image-id">{image.id}</span>
+              <span className="image-id">{tables.id}</span>
             </div>
           </div>
         </div>

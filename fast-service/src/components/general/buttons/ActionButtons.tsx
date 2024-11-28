@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useDishContext } from "../../../pages/DishContext";
 
 interface ActionButtonsProps {
-  cancelRoute: string;
-  confirmRoute: string;
+  cancelRoute: string; // Ruta a la que redirigir con el botón Cancel
+  confirmRoute: string; // Ruta a la que redirigir con el botón Confirm
 }
 
 const ActionButtons: React.FC<ActionButtonsProps> = ({
   cancelRoute,
   confirmRoute,
 }) => {
-  const { clearDishes } = useDishContext();
+  const { clearDishes } = useDishContext(); // Obtenemos la función para limpiar el JSON
   const navigate = useNavigate();
 
   return (
@@ -23,8 +23,8 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
           alignItems: "center",
         }}
         onClick={() => {
-          clearDishes();
-          navigate(cancelRoute);
+          clearDishes(); // Limpia el JSON
+          navigate(cancelRoute); // Navega a la ruta especificada
         }}
       >
         Cancel
@@ -35,7 +35,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
           justifyContent: "center",
           alignItems: "center",
         }}
-        onClick={() => navigate(confirmRoute)}
+        onClick={() => navigate(confirmRoute)} // Navega a la ruta de confirmación
       >
         Add
       </button>

@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({
       <div className="header">
         {showBackButton && (
           <img
-            src="././img/volver.svg"
+            src="/img/volver.svg"
             alt="volver"
             onClick={handleBack}
             style={{ cursor: "pointer" }}
@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({
         <h1>{title}</h1>
 
         <img
-          src="././img/salir.svg"
+          src="/img/salir.svg"
           alt="salir"
           onClick={handleMainBack}
           style={{ cursor: "pointer" }}
