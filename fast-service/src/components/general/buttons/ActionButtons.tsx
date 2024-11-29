@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDishContext } from "../../../pages/DishContext";
 
 interface ActionButtonsProps {
@@ -13,6 +13,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
 }) => {
   const { clearDishes } = useDishContext(); // Obtenemos la función para limpiar el JSON
   const navigate = useNavigate();
+  const { table } = useParams();
 
   return (
     <div className="buttons" style={{ marginBottom: "100px" }}>
@@ -23,7 +24,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
           alignItems: "center",
         }}
         onClick={() => {
-          clearDishes(); // Limpia el JSON
+          clearDishes(Number(table)); // Limpia el JSON
           navigate(cancelRoute); // Navega a la ruta especificada
         }}
       >

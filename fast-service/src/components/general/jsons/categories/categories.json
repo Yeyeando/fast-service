@@ -1,0 +1,92 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "title": "drink",
+      "category": [
+        {
+          "id": 1,
+          "url": "/img/drink.jpg"
+        },
+        {
+          "id": 2,
+          "url": "/img/drink.jpg"
+        },
+        {
+          "id": 3,
+          "url": "/img/drink.jpg"
+        },
+        {
+          "id": 4,
+          "url": "/img/drink.jpg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "starter",
+      "category": [
+        {
+          "id": 1,
+          "url": "/img/starter.jpg"
+        },
+        {
+          "id": 2,
+          "url": "/img/starter.jpg"
+        },
+        {
+          "id": 3,
+          "url": "/img/starter.jpg"
+        },
+        {
+          "id": 4,
+          "url": "/img/starter.jpg"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "burguer",
+      "category": [
+        {
+          "id": 1,
+          "url": "/img/burguer.jpg"
+        },
+        {
+          "id": 2,
+          "url": "/img/burguer.jpg"
+        },
+        {
+          "id": 3,
+          "url": "/img/burguer.jpg"
+        },
+        {
+          "id": 4,
+          "url": "/img/burguer.jpg"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "dessert",
+      "category": [
+        {
+          "id": 1,
+          "url": "/img/dessert.jpg"
+        },
+        {
+          "id": 2,
+          "url": "/img/dessert.jpg"
+        },
+        {
+          "id": 3,
+          "url": "/img/dessert.jpg"
+        },
+        {
+          "id": 4,
+          "url": "/img/dessert.jpg"
+        }
+      ]
+    }
+  ]
+}

@@ -3,7 +3,8 @@ import Header from "../components/general/header/Header";
 import Footer from "../components/general/footer/Footer";
 import HorizontalCard from "../components/general/horizontalcard/HorizontalCard";
 import Grid from "../components/general/menu-grid/Grid";
-import ActionButtons from "../components/general/buttons/ActionButtons"; // Importa el nuevo componente de botones
+import ActionButtons from "../components/general/buttons/ActionButtons";
+import categoriesData from "../components/general/jsons/categories/categories.json";
 import { useDishContext } from "./DishContext";
 import { useParams } from "react-router-dom";
 
@@ -12,28 +13,36 @@ function DishesWaiter() {
   const { id } = useParams();
   const { table } = useParams();
 
-  const dishes = [
-    { title: "Burguer1", image: "/img/burguer1.jpg" },
-    { title: "Burguer2", image: "/img/burguer1.jpg" },
-    { title: "Burguer3", image: "/img/burguer1.jpg" },
-    { title: "Burguer4", image: "/img/burguer1.jpg" },
-  ];
-
+  const categoryId = Number(id);
+  const category = categoriesData.categories.find(
+    (cat) => cat.id === categoryId
+  );
   return (
     <>
       <Header title="Menu" backRoute={`/MenuWaiter/${table}`} />
-      {id}
       <Grid>
-        {dishes.map((dish) => (
-          <HorizontalCard
-            key={dish.title}
-            title={dish.title}
-            image={dish.image}
-            onClick={() => addDish(dish)}
-          />
-        ))}
+        {category ? (
+          category.category.map((dish) => (
+            <HorizontalCard
+              key={dish.id}
+              title={`${category.title} ${dish.id}`}
+              image={dish.url}
+              onClick={() =>
+                addDish(
+                  { title: `${category.title} ${dish.id}`, image: dish.url },
+                  Number(table)
+                )
+              }
+            />
+          ))
+        ) : (
+          <p>No hay platos disponibles para esta categoría.</p>
+        )}
       </Grid>
-      <ActionButtons cancelRoute="/" confirmRoute="/confirmation" />
+      <ActionButtons
+        cancelRoute="/"
+        confirmRoute={`/confirmation/${table}/${id}`}
+      />
       <Footer />
     </>
   );
