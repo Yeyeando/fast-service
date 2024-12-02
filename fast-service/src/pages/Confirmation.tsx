@@ -69,7 +69,6 @@ function Confirmation() {
         )}
       </Grid>
       <ActionButtons cancelRoute="/" confirmRoute="/" />
-      <Footer />
     </>
   );
 }

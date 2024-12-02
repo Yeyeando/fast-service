@@ -52,7 +52,6 @@ function DishesWaiter() {
         cancelRoute="/"
         confirmRoute={`/confirmation/${table}/${id}`}
       />
-      <Footer />
       {selectedDish && (
         <IngredientPanel
           title={selectedDish.title}
