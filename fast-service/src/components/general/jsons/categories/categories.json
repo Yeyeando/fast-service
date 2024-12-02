@@ -5,25 +5,24 @@
       "title": "drink",
       "category": [
         {
-          "id": 1,
+          "name": "drink1",
           "url": "/img/drink.jpg",
-          "ingredients":[1,2]
+          "ingredients": [1, 2]
         },
         {
-          "id": 2,
-          "url": "/img/drink.jpg"
-          ,
-          "ingredients":[3]
+          "name": "drink2",
+          "url": "/img/drink.jpg",
+          "ingredients": [3]
         },
         {
-          "id": 3,
+          "name": "drink3",
           "url": "/img/drink.jpg",
-          "ingredients":[4]
+          "ingredients": [4]
         },
         {
-          "id": 4,
+          "name": "drink4",
           "url": "/img/drink.jpg",
-          "ingredients":[1,3]
+          "ingredients": [1, 3]
         }
       ]
     },
@@ -32,24 +31,24 @@
       "title": "starter",
       "category": [
         {
-          "id": 1,
+          "name": "starter1",
           "url": "/img/starter.jpg",
-          "ingredients":[1]
+          "ingredients": [1]
         },
         {
-          "id": 2,
+          "name": "starter2",
           "url": "/img/starter.jpg",
-          "ingredients":[2,5]
+          "ingredients": [2, 5]
         },
         {
-          "id": 3,
+          "name": "starter3",
           "url": "/img/starter.jpg",
-          "ingredients":[3]
+          "ingredients": [3]
         },
         {
-          "id": 4,
+          "name": "starter4",
           "url": "/img/starter.jpg",
-          "ingredients":[4]
+          "ingredients": [4]
         }
       ]
     },
@@ -58,24 +57,24 @@
       "title": "burguer",
       "category": [
         {
-          "id": 1,
+          "name": "burguer1",
           "url": "/img/burguer.jpg",
-          "ingredients":[1,2,5]
+          "ingredients": [1, 2, 5]
         },
         {
-          "id": 2,
+          "name": "burguer2",
           "url": "/img/burguer.jpg",
-          "ingredients":[1,2]
+          "ingredients": [1, 2]
         },
         {
-          "id": 3,
+          "name": "burguer3",
           "url": "/img/burguer.jpg",
-          "ingredients":[1,4]
+          "ingredients": [1, 4]
         },
         {
-          "id": 4,
+          "name": "burguer4",
           "url": "/img/burguer.jpg",
-          "ingredients":[1,2,3]
+          "ingredients": [1, 2, 3]
         }
       ]
     },
@@ -84,24 +83,24 @@
       "title": "dessert",
       "category": [
         {
-          "id": 1,
+          "name": "dessert1",
           "url": "/img/dessert.jpg",
-          "ingredients":[1]
+          "ingredients": [1]
         },
         {
-          "id": 2,
+          "name": "dessert2",
           "url": "/img/dessert.jpg",
-          "ingredients":[2]
+          "ingredients": [2]
         },
         {
-          "id": 3,
+          "name": "dessert3",
           "url": "/img/dessert.jpg",
-          "ingredients":[3]
+          "ingredients": [3]
         },
         {
-          "id": 4,
+          "name": "dessert4",
           "url": "/img/dessert.jpg",
-          "ingredients":[4]
+          "ingredients": [4]
         }
       ]
     }

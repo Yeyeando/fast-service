@@ -1,17 +1,32 @@
-.sliding-panel-open {
-  transition: transform 1s;
-  transform: translateX(50vh);
-}
-
-.sliding-panel-close {
-  transition: transform 1s;
-  transform: translateX(-50vh);
-}
-
-.sliding-panel {
+/* ingredient-panel.css */
+.ingredient-panel {
   position: fixed;
-  bottom: -50dvh;
-  width: 50vw;
-  height: 50dvh;
-  overflow: auto;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  height: 10vh;
+  z-index: 1000;
+}
+
+.ingredient-list {
+  margin-top: 20px;
+}
+
+.ingredient-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.ingredient-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.ingredient-controls button {
+  padding: 5px 10px;
 }

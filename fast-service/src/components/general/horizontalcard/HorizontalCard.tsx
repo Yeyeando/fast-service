@@ -6,20 +6,18 @@ interface HorizontalCardProps {
   image: string;
   buttonText?: string;
   showButton?: boolean;
-  category?: string;
-  ingredients?:number[];
+  ingredients?: number[]; // Lista de IDs de ingredientes
   onClick?: () => void;
-  onButtonClick?: () => void;
   onRemove?: () => void;
 }
 
 const HorizontalCard: React.FC<HorizontalCardProps> = ({
   title,
   image,
+  ingredients = [],
   onClick,
   showButton = false,
   buttonText = "Remove",
-  onButtonClick,
   onRemove,
 }) => {
   return (
@@ -42,4 +40,5 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
     </div>
   );
 };
+
 export default HorizontalCard;

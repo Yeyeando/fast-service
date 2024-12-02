@@ -1,80 +1,111 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import "../sliding-panel/ingredient-panel.css";
+import { useParams } from "react-router-dom";
+import ingredientsData from "../../jsons/ingredients/ingredients.json";
+import { useDishContext } from "../../../../pages/DishContext";
 
 interface Ingredient {
   id: number;
   name: string;
-  quantity: number;
 }
 
 interface IngredientPanelProps {
-  dish: { title: string; image: string; ingredients: Ingredient[] };
-  onClose: () => void;
-  onConfirm: (updatedDish: {
-    title: string;
-    image: string;
-    ingredients: { id: number; name: string; quantity: number }[];
-  }) => void;
+  title: string;
+  image: string;
+  category: string;
+  initialIngredients: number[];
+  onClose: () => void; // Para cerrar el panel sin confirmar
 }
 
 const IngredientPanel: React.FC<IngredientPanelProps> = ({
-  dish,
+  title,
+  image,
+  category,
+  initialIngredients,
   onClose,
-  onConfirm,
 }) => {
-  const navigate = useNavigate();
-  const { table, id } = useParams();
+  const { addDish } = useDishContext();
+  const { table } = useParams();
 
-  const [ingredients, setIngredients] = useState(
-    dish.ingredients.map((ing) => ({ ...ing, quantity: 1 })) // Default quantity = 1
-  );
+  // Filtra los ingredientes según la categoría del plato
+  const categoryIngredients = ingredientsData.ingredients.find(
+    (cat) => cat.category === category
+  )?.ingredients;
 
-  const handleAddIngredient = (id: number) => {
-    setIngredients((prev) =>
-      prev.map((ing) =>
-        ing.id === id ? { ...ing, quantity: ing.quantity + 1 } : ing
-      )
-    );
+  // Estado local para gestionar las cantidades
+  const [ingredientCounts, setIngredientCounts] = useState<{
+    [key: number]: number;
+  }>(() => {
+    const counts: { [key: number]: number } = {};
+    if (initialIngredients) {
+      initialIngredients.forEach((id) => {
+        counts[id] = (counts[id] || 0) + 1;
+      });
+    }
+    return counts;
+  });
+
+  const handleIncrement = (id: number) => {
+    setIngredientCounts((prev) => ({
+      ...prev,
+      [id]: (prev[id] || 0) + 1,
+    }));
   };
 
-  const handleRemoveIngredient = (id: number) => {
-    setIngredients((prev) =>
-      prev.map((ing) =>
-        ing.id === id && ing.quantity > 0
-          ? { ...ing, quantity: ing.quantity - 1 }
-          : ing
-      )
-    );
+  const handleDecrement = (id: number) => {
+    setIngredientCounts((prev) => ({
+      ...prev,
+      [id]: Math.max((prev[id] || 0) - 1, 0),
+    }));
   };
 
   const handleConfirm = () => {
-    const updatedDish = {
-      ...dish,
-      ingredients,
-    };
-    onConfirm(updatedDish);
-    navigate(`/Confirmation/${table}/${id}`); // Redirigir después de confirmar
+    // Genera un array de ingredientes basado en las cantidades
+    const newIngredients: number[] = [];
+    Object.entries(ingredientCounts).forEach(([id, count]) => {
+      for (let i = 0; i < count; i++) {
+        newIngredients.push(Number(id));
+      }
+    });
+
+    // Añade el plato con los nuevos ingredientes al contexto
+    addDish(
+      {
+        title,
+        image,
+        ingredients: newIngredients,
+      },
+      Number(table)
+    );
+    onClose();
   };
 
   return (
     <div className="ingredient-panel">
-      <h2>Ingredientes para {dish.title}</h2>
-      <ul>
-        {ingredients.map((ingredient) => (
-          <li key={ingredient.id}>
-            <span>{ingredient.name}</span>
-            <button onClick={() => handleRemoveIngredient(ingredient.id)}>
-              -
-            </button>
-            <span>{ingredient.quantity}</span>
-            <button onClick={() => handleAddIngredient(ingredient.id)}>
-              +
-            </button>
-          </li>
-        ))}
-      </ul>
-      <button onClick={onClose}>Cancelar</button>
+      <h2>{title}</h2>
+      <h3>Selecciona los ingredientes:</h3>
+      <div className="ingredient-list">
+        {categoryIngredients ? (
+          categoryIngredients.map((ingredient: Ingredient) => (
+            <div key={ingredient.id} className="ingredient-item">
+              <span>{ingredient.name}</span>
+              <div className="ingredient-controls">
+                <button onClick={() => handleDecrement(ingredient.id)}>
+                  -
+                </button>
+                <span>{ingredientCounts[ingredient.id] || 0}</span>
+                <button onClick={() => handleIncrement(ingredient.id)}>
+                  +
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p>No hay ingredientes disponibles para esta categoría.</p>
+        )}
+      </div>
       <button onClick={handleConfirm}>Confirmar</button>
+      <button onClick={onClose}>Cancelar</button>
     </div>
   );
 };
