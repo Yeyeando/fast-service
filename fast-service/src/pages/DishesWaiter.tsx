@@ -1,6 +1,4 @@
-import React from "react";
 import Header from "../components/general/header/Header";
-import Footer from "../components/general/footer/Footer";
 import HorizontalCard from "../components/general/horizontalcard/HorizontalCard";
 import Grid from "../components/general/menu-grid/Grid";
 import ActionButtons from "../components/general/buttons/ActionButtons";
@@ -10,8 +8,7 @@ import { useParams } from "react-router-dom";
 
 function DishesWaiter() {
   const { addDish } = useDishContext();
-  const { id } = useParams();
-  const { table } = useParams();
+  const { id, table } = useParams();
 
   const categoryId = Number(id);
   const category = categoriesData.categories.find(
@@ -27,6 +24,7 @@ function DishesWaiter() {
               key={dish.id}
               title={`${category.title} ${dish.id}`}
               image={dish.url}
+              category={`${category.title}`}
               onClick={() =>
                 addDish(
                   { title: `${category.title} ${dish.id}`, image: dish.url },
@@ -43,7 +41,6 @@ function DishesWaiter() {
         cancelRoute="/"
         confirmRoute={`/confirmation/${table}/${id}`}
       />
-      <Footer />
     </>
   );
 }

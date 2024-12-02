@@ -4,7 +4,6 @@ import HorizontalCard from "../components/general/horizontalcard/HorizontalCard"
 import ActionButtons from "../components/general/buttons/ActionButtons";
 import { useDishContext } from "./DishContext";
 import Header from "../components/general/header/Header";
-import Footer from "../components/general/footer/Footer";
 import { useParams } from "react-router-dom";
 
 function Confirmation() {
@@ -34,7 +33,6 @@ function Confirmation() {
         )}
       </Grid>
       <ActionButtons cancelRoute="/" confirmRoute="/" />
-      <Footer />
     </>
   );
 }

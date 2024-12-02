@@ -1,5 +1,4 @@
 import Header from "../components/general/header/Header";
-import Footer from "../components/general/footer/Footer";
 import HorizontalCard from "../components/general/horizontalcard/HorizontalCard";
 import Grid from "../components/general/menu-grid/Grid";
 import Menu from "../components/general/jsons/tables/tables.json";
@@ -21,7 +20,6 @@ function MenuWaiter() {
             />
           ))}
       </Grid>
-      <Footer />
     </>
   );
 }

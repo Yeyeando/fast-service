@@ -1,67 +1,80 @@
-import React, { useState, useEffect } from "react";
-import ingredientsData from "../../ingredients/ingredients.json"; // Importa el JSON
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
+interface Ingredient {
+  id: number;
+  name: string;
+  quantity: number;
+}
 
 interface IngredientPanelProps {
-  selectedCardId: number; // El id del HorizontalCard seleccionado
-  onUpdateIngredients: (
-    updatedIngredients: { id: number; name: string; quantity: number }[]
-  ) => void; // Callback para actualizar ingredientes
+  dish: { title: string; image: string; ingredients: Ingredient[] };
+  onClose: () => void;
+  onConfirm: (updatedDish: {
+    title: string;
+    image: string;
+    ingredients: { id: number; name: string; quantity: number }[];
+  }) => void;
 }
 
 const IngredientPanel: React.FC<IngredientPanelProps> = ({
-  selectedCardId,
-  onUpdateIngredients,
+  dish,
+  onClose,
+  onConfirm,
 }) => {
-  const [ingredients, setIngredients] = useState(ingredientsData.ingredients);
+  const navigate = useNavigate();
+  const { table, id } = useParams();
 
-  const [cardIngredients, setCardIngredients] = useState<
-    { id: number; name: string; quantity: number }[]
-  >([]);
+  const [ingredients, setIngredients] = useState(
+    dish.ingredients.map((ing) => ({ ...ing, quantity: 1 })) // Default quantity = 1
+  );
 
-  useEffect(() => {
-    const relatedIngredients = ingredients.filter(
-      (ingredient) => ingredient.id === selectedCardId
-    );
-    setCardIngredients(relatedIngredients);
-  }, [selectedCardId, ingredients]);
-
-  const handleAdd = (ingredientName: string) => {
-    setCardIngredients((prev) =>
-      prev.map((ingredient) =>
-        ingredient.name === ingredientName
-          ? { ...ingredient, quantity: ingredient.quantity + 1 }
-          : ingredient
+  const handleAddIngredient = (id: number) => {
+    setIngredients((prev) =>
+      prev.map((ing) =>
+        ing.id === id ? { ...ing, quantity: ing.quantity + 1 } : ing
       )
     );
   };
 
-  const handleRemove = (ingredientName: string) => {
-    setCardIngredients((prev) =>
-      prev.map((ingredient) =>
-        ingredient.name === ingredientName && ingredient.quantity > 0
-          ? { ...ingredient, quantity: ingredient.quantity - 1 }
-          : ingredient
+  const handleRemoveIngredient = (id: number) => {
+    setIngredients((prev) =>
+      prev.map((ing) =>
+        ing.id === id && ing.quantity > 0
+          ? { ...ing, quantity: ing.quantity - 1 }
+          : ing
       )
     );
   };
 
-  const handleSave = () => {
-    onUpdateIngredients(cardIngredients); // Llama al callback para actualizar los ingredientes
+  const handleConfirm = () => {
+    const updatedDish = {
+      ...dish,
+      ingredients,
+    };
+    onConfirm(updatedDish);
+    navigate(`/Confirmation/${table}/${id}`); // Redirigir después de confirmar
   };
 
   return (
-    <div>
-      <h3>Ingredientes para el Card seleccionado:</h3>
+    <div className="ingredient-panel">
+      <h2>Ingredientes para {dish.title}</h2>
       <ul>
-        {cardIngredients.map((ingredient) => (
-          <li key={ingredient.name}>
-            {ingredient.name}: {ingredient.quantity}
-            <button onClick={() => handleAdd(ingredient.name)}>+</button>
-            <button onClick={() => handleRemove(ingredient.name)}>-</button>
+        {ingredients.map((ingredient) => (
+          <li key={ingredient.id}>
+            <span>{ingredient.name}</span>
+            <button onClick={() => handleRemoveIngredient(ingredient.id)}>
+              -
+            </button>
+            <span>{ingredient.quantity}</span>
+            <button onClick={() => handleAddIngredient(ingredient.id)}>
+              +
+            </button>
           </li>
         ))}
       </ul>
-      <button onClick={handleSave}>Guardar Cambios</button>
+      <button onClick={onClose}>Cancelar</button>
+      <button onClick={handleConfirm}>Confirmar</button>
     </div>
   );
 };

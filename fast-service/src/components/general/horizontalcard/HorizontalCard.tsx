@@ -4,9 +4,11 @@ import "./horizontal-card.css";
 interface HorizontalCardProps {
   title: string;
   image: string;
-  onClick?: () => void;
-  showButton?: boolean;
   buttonText?: string;
+  showButton?: boolean;
+  category?: string;
+  ingredients?:number[];
+  onClick?: () => void;
   onButtonClick?: () => void;
   onRemove?: () => void;
 }

@@ -11,7 +11,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   cancelRoute,
   confirmRoute,
 }) => {
-  const { clearDishes } = useDishContext(); // Obtenemos la función para limpiar el JSON
+  const { clearDishes } = useDishContext(); 
   const navigate = useNavigate();
   const { table } = useParams();
 
@@ -25,7 +25,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         }}
         onClick={() => {
           clearDishes(Number(table)); // Limpia el JSON
-          navigate(cancelRoute); // Navega a la ruta especificada
+          navigate(cancelRoute); 
         }}
       >
         Cancel
@@ -36,7 +36,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
           justifyContent: "center",
           alignItems: "center",
         }}
-        onClick={() => navigate(confirmRoute)} // Navega a la ruta de confirmación
+        onClick={() => navigate(confirmRoute)}
       >
         Add
       </button>
