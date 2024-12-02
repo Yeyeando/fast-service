@@ -31,12 +31,12 @@ function DishesWaiter() {
           category.category.map((dish) => (
             <HorizontalCard
               key={dish.name}
-              title={`${category.title} ${dish.name}`}
+              title={`${dish.name}`}
               image={dish.url}
               ingredients={dish.ingredients}
               onClick={() =>
                 setSelectedDish({
-                  title: `${category.title} ${dish.name}`,
+                  title: `${dish.name}`,
                   image: dish.url,
                   category: category.title,
                   ingredients: dish.ingredients,

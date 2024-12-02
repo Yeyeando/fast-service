@@ -27,12 +27,10 @@ const IngredientPanel: React.FC<IngredientPanelProps> = ({
   const { addDish } = useDishContext();
   const { table } = useParams();
 
-  // Filtra los ingredientes según la categoría del plato
   const categoryIngredients = ingredientsData.ingredients.find(
     (cat) => cat.category === category
   )?.ingredients;
 
-  // Estado local para gestionar las cantidades
   const [ingredientCounts, setIngredientCounts] = useState<{
     [key: number]: number;
   }>(() => {
@@ -60,7 +58,6 @@ const IngredientPanel: React.FC<IngredientPanelProps> = ({
   };
 
   const handleConfirm = () => {
-    // Genera un array de ingredientes basado en las cantidades
     const newIngredients: number[] = [];
     Object.entries(ingredientCounts).forEach(([id, count]) => {
       for (let i = 0; i < count; i++) {
@@ -68,7 +65,6 @@ const IngredientPanel: React.FC<IngredientPanelProps> = ({
       }
     });
 
-    // Añade el plato con los nuevos ingredientes al contexto
     addDish(
       {
         title,
@@ -80,32 +76,81 @@ const IngredientPanel: React.FC<IngredientPanelProps> = ({
     onClose();
   };
 
+  // Separar ingredientes en base y extras
+  const baseIngredients = categoryIngredients?.filter(
+    (ingredient) => (ingredientCounts[ingredient.id] || 0) > 0
+  );
+  const extraIngredients = categoryIngredients?.filter(
+    (ingredient) => (ingredientCounts[ingredient.id] || 0) === 0
+  );
+
   return (
     <div className="ingredient-panel">
-      <h2>{title}</h2>
-      <h3>Selecciona los ingredientes:</h3>
-      <div className="ingredient-list">
-        {categoryIngredients ? (
-          categoryIngredients.map((ingredient: Ingredient) => (
-            <div key={ingredient.id} className="ingredient-item">
-              <span>{ingredient.name}</span>
-              <div className="ingredient-controls">
-                <button onClick={() => handleDecrement(ingredient.id)}>
-                  -
-                </button>
-                <span>{ingredientCounts[ingredient.id] || 0}</span>
-                <button onClick={() => handleIncrement(ingredient.id)}>
-                  +
-                </button>
+      <div className="ingredient-panel-content">
+        <button className="cancel-button" onClick={onClose}>
+          X
+        </button>
+        <h2>{title}</h2>
+        <h3>Ingredients base</h3>
+        <div className="ingredient-list">
+          {baseIngredients && baseIngredients.length > 0 ? (
+            baseIngredients.map((ingredient: Ingredient) => (
+              <div key={ingredient.id} className="ingredient-item">
+                <span>{ingredient.name}</span>
+                <div className="ingredient-controls">
+                  <span>{ingredientCounts[ingredient.id] || 0}</span>
+                  <button onClick={() => handleDecrement(ingredient.id)}>
+                    <img
+                      src="/img/minus.svg"
+                      alt="minus"
+                      className="ingredient-icon"
+                    />
+                  </button>
+                  <button onClick={() => handleIncrement(ingredient.id)}>
+                    <img
+                      src="/img/plus.svg"
+                      alt="plus"
+                      className="ingredient-icon"
+                    />
+                  </button>
+                </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <p>No hay ingredientes disponibles para esta categoría.</p>
-        )}
+            ))
+          ) : (
+            <p>No hay ingredientes base.</p>
+          )}
+        </div>
+        <h3>Extras</h3>
+        <div className="ingredient-list">
+          {extraIngredients && extraIngredients.length > 0 ? (
+            extraIngredients.map((ingredient: Ingredient) => (
+              <div key={ingredient.id} className="ingredient-item">
+                <span>{ingredient.name}</span>
+                <div className="ingredient-controls">
+                  <span>{ingredientCounts[ingredient.id] || 0}</span>
+                  <button onClick={() => handleDecrement(ingredient.id)}>
+                    <img
+                      src="/img/minus.svg"
+                      alt="minus"
+                      className="ingredient-icon"
+                    />
+                  </button>
+                  <button onClick={() => handleIncrement(ingredient.id)}>
+                    <img
+                      src="/img/plus.svg"
+                      alt="plus"
+                      className="ingredient-icon"
+                    />
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No hay ingredientes extra.</p>
+          )}
+        </div>
+        <button onClick={handleConfirm}>Confirmar</button>
       </div>
-      <button onClick={handleConfirm}>Confirmar</button>
-      <button onClick={onClose}>Cancelar</button>
     </div>
   );
 };
