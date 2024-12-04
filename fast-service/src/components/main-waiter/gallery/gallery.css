@@ -71,6 +71,7 @@
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1000px) {
   .grid-container {
+    align-self: center;
     grid-template-columns: auto auto auto auto;
   }
 
@@ -83,7 +84,10 @@
 @media only screen and (min-width: 1300px) {
   .grid-container {
     grid-template-columns: auto auto auto auto;
+    
   }
+
+  
 
   .overlay {
     top: -1, 3em;

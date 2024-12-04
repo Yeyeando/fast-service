@@ -20,7 +20,7 @@ function Confirmation() {
         return ingredient.name;
       }
     }
-    return "Desconocido"; // Si no encuentra el ingrediente
+    return "Desconocido";
   };
 
   const groupIngredients = (ingredientIds: number[]) => {

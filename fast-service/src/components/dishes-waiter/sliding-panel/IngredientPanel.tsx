@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "../sliding-panel/ingredient-panel.css";
 import { useParams } from "react-router-dom";
-import ingredientsData from "../../jsons/ingredients/ingredients.json";
-import { useDishContext } from "../../../../pages/DishContext";
+import ingredientsData from "../../general/jsons/ingredients/ingredients.json";
+import categoriesData from "../../general/jsons/categories/categories.json"; // Importar la tabla de categorías
+import { useDishContext } from "../../../pages/DishContext";
 
 interface Ingredient {
   id: number;
@@ -10,9 +11,9 @@ interface Ingredient {
 }
 
 interface IngredientPanelProps {
-  title: string;
+  title: string; // Nombre del plato (por ejemplo, "drink1")
   image: string;
-  category: string;
+  category: string; // Nombre de la categoría (por ejemplo, "drink")
   initialIngredients: number[];
   onClose: () => void; // Para cerrar el panel sin confirmar
 }
@@ -27,6 +28,16 @@ const IngredientPanel: React.FC<IngredientPanelProps> = ({
   const { addDish } = useDishContext();
   const { table } = useParams();
 
+  // Encontrar la categoría y el plato específico en categories.json
+  const categoryData = categoriesData.categories.find(
+    (cat) => cat.title === category
+  );
+  const dish = categoryData?.category.find((dish) => dish.name === title);
+
+  // IDs de ingredientes base del plato actual
+  const baseIngredientIds = dish?.ingredients || [];
+
+  // Obtener todos los ingredientes disponibles en esta categoría
   const categoryIngredients = ingredientsData.ingredients.find(
     (cat) => cat.category === category
   )?.ingredients;
@@ -76,12 +87,12 @@ const IngredientPanel: React.FC<IngredientPanelProps> = ({
     onClose();
   };
 
-  // Separar ingredientes en base y extras
-  const baseIngredients = categoryIngredients?.filter(
-    (ingredient) => (ingredientCounts[ingredient.id] || 0) > 0
+  // Separar ingredientes en base y extras basados en el plato actual
+  const baseIngredients = categoryIngredients?.filter((ingredient) =>
+    baseIngredientIds.includes(ingredient.id)
   );
   const extraIngredients = categoryIngredients?.filter(
-    (ingredient) => (ingredientCounts[ingredient.id] || 0) === 0
+    (ingredient) => !baseIngredientIds.includes(ingredient.id)
   );
 
   return (

@@ -4,7 +4,18 @@
 }
 
 .buttons{
-    position: fixed;
-    bottom: 0;
-    margin-bottom: 20 vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-cancel{
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-confirm{
+    background-color: blue;
+    justify-content: center;
+    align-items: center;
 }

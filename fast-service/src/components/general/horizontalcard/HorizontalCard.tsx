@@ -4,6 +4,7 @@ import "./horizontal-card.css";
 interface HorizontalCardProps {
   title: string;
   image: string;
+  buttonIcon?: string;
   buttonText?: string;
   showButton?: boolean;
   ingredients?: number[]; // Lista de IDs de ingredientes
@@ -17,7 +18,7 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
   ingredients = [],
   onClick,
   showButton = false,
-  buttonText = "Remove",
+  buttonIcon = "/img/cross.svg",
   onRemove,
 }) => {
   return (
@@ -30,7 +31,7 @@ const HorizontalCard: React.FC<HorizontalCardProps> = ({
             if (onRemove) onRemove();
           }}
         >
-          {buttonText}
+          <img src={buttonIcon} alt="Remove" className="button-icon" />
         </button>
       )}
       <img src={image} className="image-style" alt={title} />

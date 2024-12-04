@@ -30,7 +30,7 @@ const ImageGallery: React.FC<galleryProps> = ({ nextRoute = "/" }) => {
           </div>
         </div>
       ))}
-    </div>
+      </div>
   );
 };
 

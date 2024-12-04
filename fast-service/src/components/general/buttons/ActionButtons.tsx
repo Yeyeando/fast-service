@@ -16,30 +16,24 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   const { table } = useParams();
 
   return (
-    <div className="buttons" style={{ marginBottom: "100px" }}>
-      <button
-        style={{
-          backgroundColor: "red",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        onClick={() => {
-          clearDishes(Number(table)); // Limpia el JSON
-          navigate(cancelRoute); 
-        }}
-      >
-        Cancel
-      </button>
-      <button
-        style={{
-          backgroundColor: "blue",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-        onClick={() => navigate(confirmRoute)}
-      >
-        Add
-      </button>
+    <div className="buttons">
+      <div className="button">
+        <button className="button-confirm"
+          onClick={() => {
+            clearDishes(Number(table)); // Limpia el JSON
+            navigate(cancelRoute); 
+          }}
+        >
+          Cancel
+        </button>
+      </div>
+      <div className="button">
+        <button className="button-cancel"
+          onClick={() => navigate(confirmRoute)}
+        >
+          Add
+        </button>
+      </div>
     </div>
   );
 };

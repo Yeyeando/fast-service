@@ -5,7 +5,7 @@ import HorizontalCard from "../components/general/horizontalcard/HorizontalCard"
 import Grid from "../components/menu-grid/Grid";
 import ActionButtons from "../components/general/buttons/ActionButtons";
 import categoriesData from "../components/general/jsons/categories/categories.json";
-import IngredientPanel from "../components/general/dishes-waiter/sliding-panel/IngredientPanel";
+import IngredientPanel from "../components/dishes-waiter/sliding-panel/IngredientPanel";
 import { useParams } from "react-router-dom";
 
 function DishesWaiter() {
