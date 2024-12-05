@@ -1,0 +1,20 @@
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10%;
+  }
+  
+  .nav-button {
+    width: 30%;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 10px; 
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+ 
+  }

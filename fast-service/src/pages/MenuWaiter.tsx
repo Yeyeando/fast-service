@@ -3,6 +3,7 @@ import HorizontalCard from "../components/general/horizontalcard/HorizontalCard"
 import Grid from "../components/menu-grid/Grid";
 import Menu from "../components/general/jsons/tables/tables.json";
 import { useNavigate, useParams } from "react-router-dom";
+import Footer from "../components/general/footer/Footer";
 
 function MenuWaiter() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ function MenuWaiter() {
             />
           ))}
       </Grid>
+      <Footer/>
     </>
   );
 }

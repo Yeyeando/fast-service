@@ -1,10 +1,11 @@
+import WaiterButtons from "../buttons/WaiterButtons";
 import "../Footer/footer.css";
 
 function Footer() {
   return (
     <div className="footer-container">
       <div className="footer">
-        <img src="/img/salir.svg" alt="ring" />
+        <WaiterButtons/>
       </div>
     </div>
   );

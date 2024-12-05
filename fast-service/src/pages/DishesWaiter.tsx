@@ -61,6 +61,8 @@ function DishesWaiter() {
           onClose={() => setSelectedDish(null)}
         />
       )}
+
+      <Footer/>
     </>
   );
 }

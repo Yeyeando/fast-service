@@ -6,6 +6,7 @@ import { useDishContext } from "./DishContext";
 import Header from "../components/general/header/Header";
 import Footer from "../components/general/footer/Footer";
 import ingredientsData from "../components/general/jsons/ingredients/ingredients.json";
+import "./pages-css/Confirmation.css"
 import { useParams } from "react-router-dom";
 
 function Confirmation() {
@@ -35,16 +36,21 @@ function Confirmation() {
     }));
   };
 
+  const handleSend = () => {
+    // Realiza la misma lógica que Cancel
+    console.log("Send button pressed: limpiando JSON y redirigiendo.");
+  };
+
   return (
     <>
       <Header backRoute={`/DishesWaiter/${table}/${id}`} title="Confirmation" />
-      <h2>Platos Seleccionados:</h2>
       <Grid>
         {selectedDishes.length > 0 ? (
           selectedDishes
             .filter((dish) => dish.table === Number(table))
             .map((dish, index) => (
               <div key={index}>
+                <div className="ingredients-container">
                 <HorizontalCard
                   showButton={true}
                   title={dish.title}
@@ -52,7 +58,7 @@ function Confirmation() {
                   onRemove={() => removeDish(index)}
                 />
                 {/* Mostrar ingredientes agrupados */}
-                <p>Ingredientes:</p>
+                
                 <ul>
                   {groupIngredients(dish.ingredients).map(
                     ({ name, count }, idx) => (
@@ -62,13 +68,20 @@ function Confirmation() {
                     )
                   )}
                 </ul>
+                </div>
               </div>
             ))
         ) : (
           <p>No hay platos seleccionados</p>
         )}
       </Grid>
-      <ActionButtons cancelRoute="/" confirmRoute="/" />
+      <ActionButtons
+        cancelRoute="/" 
+        confirmRoute="/" 
+        confirmText="Send" // Cambia el texto del botón Confirm a Send
+        onSend={handleSend} // Asigna la funcionalidad de Send
+      />
+      <Footer />
     </>
   );
 }

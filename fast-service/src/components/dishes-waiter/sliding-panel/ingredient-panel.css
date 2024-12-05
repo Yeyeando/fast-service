@@ -43,29 +43,34 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  background-color: rgb(217, 217, 217, 0.1);
+  
 }
 
-.ingredient-controls {
+.ingredient-controls{
+  width: 30%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  
+}
+.ingredient-icon {
+  width: 20px; /* Tamaño del botón */
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
   display: flex;
   align-items: center;
-}
-
-.ingredient-controls button {
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: transparent;
+  justify-content: center;
   cursor: pointer;
 }
 
-.ingredient-controls button img {
+.ingredient-icon img {
   width: 20px;
   height: 20px;
 }
 
-.ingredient-controls button:hover {
-  opacity: 0.8;
-}
 
 button {
   padding: 10px 20px;
@@ -73,29 +78,50 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background-color: #007bff;
-  color: white;
+  background-color: transparent;
 }
 
-button:hover {
-  background-color: #0056b3;
-}
 
 /* Botón "Cancelar" */
+/* Botón "Cancelar" con ícono */
 .cancel-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: red;
-  color: white;
-  font-size: 14px;
-  border-radius: 50%;
-  padding: 5px 10px;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
 }
 
-.cancel-button:hover {
-  opacity: 0.8;
+.cancel-button img {
+  width: 100%;
+  height: auto;
+}
+
+
+/* Botón de confirmación centrado y semitransparente */
+.confirm-button {
+  position: absolute;
+  width: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 30px;
+  background-color: rgba(7, 125, 163, 0.7); /* Azul semitransparente */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+
+.confirm-button:hover {
+  background-color: rgba(7, 125, 163, 1); /* Azul opaco al pasar el mouse */
+}
+.confirm-button:disabled {
+  background-color: rgba(255, 41, 41, 0.5);
+  cursor: not-allowed;
 }
 
 /* Animación */

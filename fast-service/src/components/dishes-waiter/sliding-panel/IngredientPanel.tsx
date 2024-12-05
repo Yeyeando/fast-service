@@ -11,11 +11,11 @@ interface Ingredient {
 }
 
 interface IngredientPanelProps {
-  title: string; // Nombre del plato (por ejemplo, "drink1")
+  title: string; 
   image: string;
-  category: string; // Nombre de la categoría (por ejemplo, "drink")
+  category: string;
   initialIngredients: number[];
-  onClose: () => void; // Para cerrar el panel sin confirmar
+  onClose: () => void; 
 }
 
 const IngredientPanel: React.FC<IngredientPanelProps> = ({
@@ -87,7 +87,13 @@ const IngredientPanel: React.FC<IngredientPanelProps> = ({
     onClose();
   };
 
-  // Separar ingredientes en base y extras basados en el plato actual
+  // Calcular el total de ingredientes seleccionados
+  const totalSelectedIngredients = Object.values(ingredientCounts).reduce(
+    (total, count) => total + count,
+    0
+  );
+
+  // Separar ingredientes
   const baseIngredients = categoryIngredients?.filter((ingredient) =>
     baseIngredientIds.includes(ingredient.id)
   );
@@ -99,11 +105,12 @@ const IngredientPanel: React.FC<IngredientPanelProps> = ({
     <div className="ingredient-panel">
       <div className="ingredient-panel-content">
         <button className="cancel-button" onClick={onClose}>
-          X
+          <img src="/img/cross.svg" alt="close" />
         </button>
         <h2>{title}</h2>
         <h3>Ingredients base</h3>
         <div className="ingredient-list">
+          {/* Ingredientes base */}
           {baseIngredients && baseIngredients.length > 0 ? (
             baseIngredients.map((ingredient: Ingredient) => (
               <div key={ingredient.id} className="ingredient-item">
@@ -133,6 +140,7 @@ const IngredientPanel: React.FC<IngredientPanelProps> = ({
         </div>
         <h3>Extras</h3>
         <div className="ingredient-list">
+          {/* Ingredientes extra */}
           {extraIngredients && extraIngredients.length > 0 ? (
             extraIngredients.map((ingredient: Ingredient) => (
               <div key={ingredient.id} className="ingredient-item">
@@ -160,7 +168,13 @@ const IngredientPanel: React.FC<IngredientPanelProps> = ({
             <p>No hay ingredientes extra.</p>
           )}
         </div>
-        <button onClick={handleConfirm}>Confirmar</button>
+        <button
+          className="confirm-button"
+          onClick={handleConfirm}
+          disabled={totalSelectedIngredients === 0} // Deshabilitar si no hay ingredientes seleccionados
+        >
+          Add
+        </button>
       </div>
     </div>
   );
