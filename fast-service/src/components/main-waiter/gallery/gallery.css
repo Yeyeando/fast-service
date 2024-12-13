@@ -67,6 +67,11 @@
     margin-top: 10vh;
     margin-bottom: 10vh;
   }
+
+  .overlay {
+    top: -2em;
+    font-size: 50px;
+  }
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1000px) {
@@ -87,9 +92,8 @@
     width: 80vw;
   }
 
-
   .overlay {
-    top: -1, 3em;
-    font-size: 80px;
+    top: -1, 2em;
+    font-size: 50px;
   }
 }
