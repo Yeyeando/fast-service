@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import { DishProvider } from "../../../pages/DishContext";
 import IngredientPanel from "./IngredientPanel";
-import { beforeEach, describe, expect, test, vi } from "vitest";
+import { beforeEach, describe, expect, it, test, vi } from "vitest";
 
 describe("IngredientPanel Component", () => {
   const mockOnClose = vi.fn();
@@ -21,7 +21,7 @@ describe("IngredientPanel Component", () => {
     vi.clearAllMocks();
   });
 
-  test("renderiza el componente con el titulo y los ingredientes", () => {
+  it("renderiza el componente con el titulo y los ingredientes", () => {
     render(
       <DishProvider>
         <BrowserRouter>
@@ -35,7 +35,7 @@ describe("IngredientPanel Component", () => {
     expect(screen.getByText("Extras")).toBeInTheDocument();
   });
 
-  test("incrementa y decrementa el numero de ingredientes", () => {
+  it("incrementa y decrementa el numero de ingredientes", () => {
     render(
       <DishProvider>
         <BrowserRouter>
@@ -56,7 +56,7 @@ describe("IngredientPanel Component", () => {
     expect(screen.getByText("1")).toBeInTheDocument();
   });
 
-  test("desactiva el boton de añadir cuando no hay ingredientes seleccionados", () => {
+  it("desactiva el boton de añadir cuando no hay ingredientes seleccionados", () => {
     render(
       <DishProvider>
         <BrowserRouter>
@@ -69,7 +69,7 @@ describe("IngredientPanel Component", () => {
     expect(screen.getByRole("button", { name: /Add/i })).toBeDisabled();
   });
 
-  test("al hacer clic en Add, llama a onClose y addDish", () => {
+  it("al hacer clic en Add, llama a onClose y addDish", () => {
     render(
       <DishProvider>
         <BrowserRouter>
@@ -83,7 +83,7 @@ describe("IngredientPanel Component", () => {
     expect(mockOnClose).toHaveBeenCalled();
   });
 
-  test("al hacer clic en cancelar se cierra el panel", () => {
+  it("al hacer clic en cancelar se cierra el panel", () => {
     render(
       <DishProvider>
         <BrowserRouter>

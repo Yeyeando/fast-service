@@ -11,11 +11,11 @@ interface Ingredient {
 }
 
 interface IngredientPanelProps {
-  title: string; 
+  title: string;
   image: string;
   category: string;
   initialIngredients: number[];
-  onClose: () => void; 
+  onClose: () => void;
 }
 
 const IngredientPanel: React.FC<IngredientPanelProps> = ({
