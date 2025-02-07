@@ -2,6 +2,17 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/contains";
 
+// Obtener la tabla contains
+export const getAllContaints = async () => {
+  try {
+    const response = await axios.get(API_URL);
+    return response.data;
+  } catch (error) {
+    console.error("Error obteniendo los conteins:", error);
+    throw error;
+  }
+};
+
 // Obtener ingredientes de un plato específico
 export const getIngredientsByDish = async (dishId: number) => {
   try {
